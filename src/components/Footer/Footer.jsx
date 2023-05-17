@@ -12,13 +12,13 @@ export default function Footer() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='relative'>
         <Toolbar style={{
-            display:"flex",
-            justifyContent:"flex-end",
-            gap:40,
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: 40,
         }}>
-            <Link to="https://github.com/Dumopolis"><GitHubIcon /></Link>
-            <Link to="https://www.linkedin.com/in/dumopolis/"><LinkedInIcon /></Link>
-            <Link to="https://t.me/dumopolis"><TelegramIcon /></Link>
+          <Link to="https://github.com/Dumopolis"><GitHubIcon /></Link>
+          <Link to="https://www.linkedin.com/in/dumopolis/"><LinkedInIcon /></Link>
+          <Link to="https://t.me/dumopolis"><TelegramIcon /></Link>
         </Toolbar>
       </AppBar>
     </Box>

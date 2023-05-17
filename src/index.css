@@ -8,4 +8,6 @@ a{
 }
 .outlet{
   min-height: calc(100vh - 128px);
+  box-sizing: border-box;
+  padding: 100px;
 }
