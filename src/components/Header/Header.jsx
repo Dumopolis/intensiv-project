@@ -3,11 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import SearchBar from '../SearchBar/SearchBar';
-
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { useAuth } from '../../hooks/useAuth';
 import GuestUserNav from '../GuestUserNav/GuestUserNav';
 import AuthUserNav from '../AuthUserNav/AuthUserNav';
+
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+
+import { useAuth } from '../../hooks/useAuth';
+
 
 
 export default function Header() {
@@ -20,7 +22,7 @@ export default function Header() {
           
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              Aston
+              Universe
             </Link>
           </Typography>
 
