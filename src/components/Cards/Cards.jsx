@@ -3,20 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import CardComponent from '../Card/CardComponent'
 
+import { fetchData } from '../../store/slices/dataReducer'
+import { useItemsForCards } from '../../hooks/useItemsForCards'
+import { transformDataObject } from '../../dataFormating/dataFormating'
 
 import './style.css'
-import { fetchData } from '../../store/slices/dataReducer'
-import { useData } from '../../hooks/useData'
 
-function transformDataObject(item){
-    return {
-        urlImg: item.links[0].href,
-        title: item.data[0].title,
-        explanation: item.data[0].description,
-        id: item.data[0].nasa_id,
-        date: item.data[0].date_created
-    }
-}
+
 
 export default function Cards() {
     const dispatch = useDispatch()
@@ -25,7 +18,7 @@ export default function Cards() {
         dispatch(fetchData())
     }, [dispatch])
 
-    const { status, data, error } = useData()
+    const { status, data, error } = useItemsForCards()
 
 
     return (

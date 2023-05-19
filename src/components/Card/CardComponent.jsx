@@ -4,20 +4,14 @@ import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const moment = require('moment')
+import { formatDate, formatDescription } from '../../dataFormating/dataFormating';
 
-const descriptionFormat = (description) => {
-    const sliceDescription = description.slice(0, 120);
-    const lastSpace = sliceDescription.lastIndexOf(' ');
-    const finishDescription = sliceDescription.slice(0, lastSpace) + '...';
-    return finishDescription;
-}
 
-export default function CardComponent({ date, explanation, title, urlImg }) {
+export default function CardComponent({ date, description, title, urlImg }) {
 
-    const description =  descriptionFormat(explanation)
+    const descriptionFormated = formatDescription(description)
 
-    const formatDate = moment(date).format("DD MMM YYYY")
+    const dateFormated = formatDate(date)
 
     return (
         <Card sx={{
@@ -39,10 +33,10 @@ export default function CardComponent({ date, explanation, title, urlImg }) {
 
             <CardContent>
                 <Typography variant="body1" color="text.secondary" >
-                    {formatDate}
+                    {dateFormated}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {description}
+                    {descriptionFormated}
                 </Typography>
             </CardContent>
 

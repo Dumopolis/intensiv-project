@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-export function useData() {
+export function useItemsForCards() {
 	const {data, status, error} = useSelector((state) => state.data);
 	
 	return {
