@@ -1,11 +1,12 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-import AlertComponent from '../../helpComponents/AlertComponent/AlertComponent';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import AlertComponent from '../../helpComponents/AlertComponent/AlertComponent';
+
 
 const theme = createTheme({
   typography: {
@@ -21,7 +22,7 @@ const theme = createTheme({
     },
   },
 }
-)
+);
 
 export default function Layout() {
   return (
@@ -33,5 +34,5 @@ export default function Layout() {
       </div>
       <Footer />
     </ThemeProvider>
-  )
+  );
 }

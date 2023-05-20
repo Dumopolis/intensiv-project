@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
+
 
 export default function GuestUserNav() {
     return (
@@ -13,5 +14,5 @@ export default function GuestUserNav() {
                 <Button color="inherit">Sign up</Button>
             </Link>
         </>
-    )
+    );
 }

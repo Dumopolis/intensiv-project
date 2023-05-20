@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
+
+import { Button, Typography } from '@mui/material';
 
 import { removeUser } from '../../store/slices/userSlice';
 import { showAlert } from '../../store/slices/alertSlice';
-
-import { Button, Typography } from '@mui/material'
 
 
 export default function AuthUserNav({ email }) {
@@ -14,9 +14,9 @@ export default function AuthUserNav({ email }) {
             severity: "info",
             title: "Выход",
             text: `Вы вышли из аккаунта ${email}`
-        }))
-        dispatch(removeUser())
-    }
+        }));
+        dispatch(removeUser());
+    };
 
     return (
         <>
@@ -25,5 +25,5 @@ export default function AuthUserNav({ email }) {
             </Typography>
             <Button onClick={logOut} color="inherit">Log out</Button>
         </>
-    )
+    );
 }

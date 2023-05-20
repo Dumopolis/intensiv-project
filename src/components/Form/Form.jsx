@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { Button, FormGroup, Input } from '@mui/material'
+import { Button, FormGroup, Input } from '@mui/material';
 
 
 export default function Form({ handleClick, buttonText }) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
         <FormGroup>
@@ -36,5 +36,5 @@ export default function Form({ handleClick, buttonText }) {
             </Button>
 
         </FormGroup>
-    )
+    );
 }

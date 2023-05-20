@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+
+import { AlertTitle, Alert, IconButton } from '@mui/material';
+
+import CloseIcon from '@mui/icons-material/Close';
 
 import { removeAlert } from '../../store/slices/alertSlice';
 import { useAlert } from '../../hooks/useAlert';
-
-import { AlertTitle, Alert, IconButton } from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close';
 
 
 export default function AlertComponent() {
     const dispatch = useDispatch();
     const closeAlert = () => {
-        dispatch(removeAlert())
-    }
-    const { activeAlert, severity, title, text } = useAlert()
+        dispatch(removeAlert());
+    };
+    const { activeAlert, severity, title, text } = useAlert();
 
     useEffect(() => {
-        setTimeout(() => dispatch(removeAlert()), 10000)
+        setTimeout(() => dispatch(removeAlert()), 10000);
         // eslint-disable-next-line
     }, [activeAlert])
 
@@ -40,5 +41,5 @@ export default function AlertComponent() {
             {text}
         </Alert>
 
-    ) : null
+    ) : null;
 }

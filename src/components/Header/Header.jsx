@@ -2,18 +2,17 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+
 import SearchBar from '../SearchBar/SearchBar';
 import GuestUserNav from '../GuestUserNav/GuestUserNav';
 import AuthUserNav from '../AuthUserNav/AuthUserNav';
 
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-
 import { useAuth } from '../../hooks/useAuth';
 
 
-
 export default function Header() {
-  const { isAuth, email } = useAuth()
+  const { isAuth, email } = useAuth();
 
   return (
     <Box sx={{ flexGrow: 1 }} >

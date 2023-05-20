@@ -2,11 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from '../Layout/Layout';
 import Home from '../Home/Home';
-import Signin from '../Signin/Signin'
-import Signup from '../Signup/Signup'
-import Favorites from '../Favorites/Favorites'
-import History from '../History/History'
-import Search from '../Search/Search'
+import Signin from '../Signin/Signin';
+import Signup from '../Signup/Signup';
+import Favorites from '../Favorites/Favorites';
+import History from '../History/History';
+import Search from '../Search/Search';
 
 import './App.css';
 

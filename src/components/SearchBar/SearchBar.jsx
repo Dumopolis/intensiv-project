@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -59,5 +59,5 @@ export default function SearchBar() {
         inputProps={{ 'aria-label': 'search' }}
       />
     </Search>
-  )
+  );
 }

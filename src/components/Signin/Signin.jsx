@@ -1,19 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-
+import { useDispatch } from 'react-redux';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import { Container } from '@mui/material';
 
 import { setUser } from '../../store/slices/userSlice';
 import { showAlert } from '../../store/slices/alertSlice';
 
-import Form from '../Form/Form'
-
-import { Container } from '@mui/material';
-
-
+import Form from '../Form/Form';
 
 
 export default function Signin() {
@@ -28,9 +25,9 @@ export default function Signin() {
           email: user.email,
           id: user.uid,
           token: user.accessToken,
-        }))
-        navigate('/')
-        return user
+        }));
+        navigate('/');
+        return user;
       })
 
       .then((user) => dispatch(showAlert({
@@ -43,13 +40,13 @@ export default function Signin() {
         severity: "error",
         title: "Произошла ошибка",
         text: err.message,
-      })))
-  }
+      })));
+  };
 
   return (
     <Container maxWidth="sm">
 
       <Form handleClick={handleLogin} buttonText="Sign In"/>
     </Container>
-  )
+  );
 }

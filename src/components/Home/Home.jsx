@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import Cards from '../Cards/Cards'
+import { Typography } from '@mui/material';
 
-import { Typography } from '@mui/material'
+import Cards from '../Cards/Cards';
+
 
 export default function Home() {
   return (
@@ -18,5 +19,5 @@ export default function Home() {
       </Typography>
       <Cards />
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
@@ -9,9 +9,9 @@ import { formatDate, formatDescription } from '../../dataFormating/dataFormating
 
 export default function CardComponent({ date, description, title, urlImg }) {
 
-    const descriptionFormated = formatDescription(description)
+    const descriptionFormated = formatDescription(description);
 
-    const dateFormated = formatDate(date)
+    const dateFormated = formatDate(date);
 
     return (
         <Card sx={{
@@ -54,5 +54,5 @@ export default function CardComponent({ date, description, title, urlImg }) {
 
 
         </Card>
-    )
+    );
 }
