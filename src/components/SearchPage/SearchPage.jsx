@@ -8,7 +8,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import Cards from '../Cards/Cards';
 
 import { fetchData } from '../../store/slices/dataSlice';
-import { setRadio } from '../../store/slices/searchRequestSlice';
+import { setKeywords } from '../../store/slices/searchSlice';
 
 import { useSearchRequestInfo } from '../../hooks/useSearchRequestInfo';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -19,7 +19,7 @@ export default function Search() {
   const searchInfo = useSearchRequestInfo();
 
   const changeRadio = (e) => {
-    dispatch(setRadio({ keywords: e.target.value }));
+    dispatch(setKeywords({ keywords: e.target.value }));
   };
 
   const makeRequest = useDebounce(()=>dispatch(fetchData(searchInfo)),300);

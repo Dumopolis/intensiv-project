@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 import { fetchData } from '../../store/slices/dataSlice';
 
 import Cards from '../Cards/Cards';
-import { removeSearch } from '../../store/slices/searchRequestSlice';
+import { removeSearch } from '../../store/slices/searchSlice';
 
 
 export default function Home() {

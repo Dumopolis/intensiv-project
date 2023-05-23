@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
 
 import { fetchData } from '../../store/slices/dataSlice';
-import { setInput } from '../../store/slices/searchRequestSlice';
+import { setRequest } from '../../store/slices/searchSlice';
 import { showAlert } from '../../store/slices/alertSlice';
 import { useSearchRequestInfo } from '../../hooks/useSearchRequestInfo';
 import { useAuth } from '../../hooks/useAuth';
@@ -22,7 +22,7 @@ export default function SearchBar() {
   const navigate = useNavigate();
 
   const changeInputValue = (e) => {
-    dispatch(setInput({ request: e.target.value }));
+    dispatch(setRequest({ request: e.target.value }));
   };
 
   const tryToSearch = (e) => {

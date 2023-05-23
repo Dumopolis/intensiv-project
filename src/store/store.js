@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 import alertReducer from "./slices/alertSlice";
 import dataReducer from "./slices/dataSlice";
-import searchReducer from "./slices/searchRequestSlice";
+import searchReducer from "./slices/searchSlice";
 
 export const store = configureStore({
 	reducer: {

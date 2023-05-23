@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { debounce } from "lodash";
 
-import { useLatst } from "./useLatst";
+import { useLatest } from "./useLatest";
 
 export function useDebounce(cb, ms) {
-	const latestCb = useLatst(cb);
+	const latestCb = useLatest(cb);
 	return useMemo(
 		() =>
 			debounce((...args) => {

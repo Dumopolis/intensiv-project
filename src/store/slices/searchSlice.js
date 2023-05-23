@@ -5,14 +5,14 @@ const initialState = {
 	keywords: "",
 };
 
-const searchRequestSlice = createSlice({
+const searchSlice = createSlice({
 	name: "search",
 	initialState,
 	reducers: {
-		setRadio(state, action) {
+		setKeywords(state, action) {
 			state.keywords = action.payload.keywords;
 		},
-		setInput(state, action) {
+		setRequest(state, action) {
 			state.request = action.payload.request;
 		},
 		removeSearch(state) {
@@ -21,6 +21,6 @@ const searchRequestSlice = createSlice({
 		},
 	},
 });
-export const { setRadio, setInput, removeSearch } = searchRequestSlice.actions;
+export const { setKeywords, setRequest, removeSearch } = searchSlice.actions;
 
-export default searchRequestSlice.reducer;
+export default searchSlice.reducer;
