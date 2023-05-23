@@ -6,7 +6,7 @@ import Signin from '../Signin/Signin';
 import Signup from '../Signup/Signup';
 import Favorites from '../Favorites/Favorites';
 import History from '../History/History';
-import Search from '../Search/Search';
+import SearchPage from '../SearchPage/SearchPage';
 
 import './App.css';
 
@@ -19,7 +19,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/history' element={<History />} />
-        <Route path='/search' element={<Search />} />
+        <Route path='/search' element={<SearchPage />} />
       </Route>
     </Routes>
   );

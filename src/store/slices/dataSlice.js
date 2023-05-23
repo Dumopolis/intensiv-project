@@ -2,16 +2,25 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchData = createAsyncThunk(
 	"data/fetchData",
-	async function (_, { rejectWithValue }) {
+	async function (searchRequest={}, { rejectWithValue }) {
+		const {
+			request = "",
+			mediaType = "image",
+			pageSize = "8",
+			yearStart = "1980",
+			keywords = "",
+		} = searchRequest;
+		
 		try {
 			const response = await fetch(
 				`https://images-api.nasa.gov/search
-					?q=Mars%20Science%20Laboratory
-					&media_type=image
-					&page_size=8
-					&year_start=2023`
+					?q=${request}
+					&media_type=${mediaType}
+					&page_size=${pageSize}
+					&year_start=${yearStart}
+					&keywords=${keywords}`
 			);
-
+			
 			if (!response.ok) {
 				throw new Error("Server error!");
 			}
@@ -19,7 +28,7 @@ export const fetchData = createAsyncThunk(
 			const { collection } = await response.json();
 
 			const { items: data } = collection;
-
+			
 			return data;
 		} catch (error) {
 			return rejectWithValue(error.message);
@@ -41,6 +50,7 @@ const dataSlice = createSlice({
 		[fetchData.pending]: (state) => {
 			state.status = "loading";
 			state.error = null;
+			state.data = null;
 		},
 		[fetchData.fulfilled]: (state, action) => {
 			state.status = "success";

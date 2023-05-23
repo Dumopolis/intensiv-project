@@ -8,7 +8,7 @@ export default function Form({ handleClick, buttonText }) {
     const [password, setPassword] = useState('');
 
     return (
-        <FormGroup>
+        <FormGroup sx={{ gap: '10px' }}>
 
             <Input
                 placeholder="Email"

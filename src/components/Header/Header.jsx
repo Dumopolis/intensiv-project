@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 
@@ -14,20 +14,19 @@ import { useAuth } from '../../hooks/useAuth';
 export default function Header() {
   const { isAuth, email } = useAuth();
 
+  const { pathname } = useLocation();
+
   return (
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
         <Toolbar>
-          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              Universe
+              UNIVERSE
             </Link>
           </Typography>
-
           {isAuth ? <AuthUserNav email={email} /> : <GuestUserNav />}
-
-          <SearchBar />
+          {pathname !== '/search' && <SearchBar />}
         </Toolbar>
       </AppBar>
     </Box>

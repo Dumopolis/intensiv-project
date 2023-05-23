@@ -22,7 +22,7 @@ export default function AlertComponent() {
     }, [activeAlert])
 
     return activeAlert ? (
-        <Alert severity={severity} sx={{
+        <Alert variant='outlined' severity={severity} sx={{
             position: "absolute",
             right: 10,
             top: 70,

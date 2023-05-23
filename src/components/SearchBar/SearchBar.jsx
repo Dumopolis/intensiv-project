@@ -1,62 +1,57 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { styled, alpha } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
 
+import { fetchData } from '../../store/slices/dataSlice';
+import { setInput } from '../../store/slices/searchRequestSlice';
+import { showAlert } from '../../store/slices/alertSlice';
+import { useSearchRequestInfo } from '../../hooks/useSearchRequestInfo';
+import { useAuth } from '../../hooks/useAuth';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
+import { Search, SearchIconWrapper, StyledInputBase } from './styleForSearchBar';
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
 
 export default function SearchBar() {
+
+  const searchInfo = useSearchRequestInfo();
+  const dispatch = useDispatch();
+  const { isAuth } = useAuth();
+  const navigate = useNavigate();
+
+  const changeInputValue = (e) => {
+    dispatch(setInput({ request: e.target.value }));
+  };
+
+  const tryToSearch = (e) => {
+    if (e.code === 'Enter') {
+      if (isAuth) {
+        navigate('/search');
+        dispatch(fetchData(searchInfo));
+      } else {
+        dispatch(showAlert({
+          severity: "error",
+          title: "Sorry... You can`t use search",
+          text: `If you want use search, you need authenticate or registration`
+        }));
+      }
+    }
+  };
+
+
   return (
-    <Search >
+    <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        onKeyDown={tryToSearch}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
+        onChange={changeInputValue}
+        value={searchInfo.request}
       />
     </Search>
   );

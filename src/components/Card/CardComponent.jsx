@@ -15,7 +15,7 @@ export default function CardComponent({ date, description, title, urlImg }) {
 
     return (
         <Card sx={{
-            maxWidth: 345,
+            width: 345,
             margin: 2,
         }}>
             <CardHeader title={title}

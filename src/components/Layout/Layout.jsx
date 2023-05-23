@@ -12,13 +12,12 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto Mono, monospace',
   },
-  
   palette: {
     primary: {
-      main: '#fff',
+      main: '#000',
     },
     secondary: {
-      main: '#303f9f',
+      main: 'rgb(90,0,10)',
     },
   },
 }

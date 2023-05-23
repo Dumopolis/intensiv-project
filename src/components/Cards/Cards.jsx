@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 import CardComponent from '../Card/CardComponent';
 
-import { fetchData } from '../../store/slices/dataReducer';
 import { useItemsForCards } from '../../hooks/useItemsForCards';
 import { transformDataObject } from '../../dataFormating/dataFormating';
 
@@ -11,14 +9,7 @@ import './style.css';
 
 
 export default function Cards() {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchData());
-    }, [dispatch]);
-
     const { status, data, error } = useItemsForCards();
-
 
     return (
         <div className='cards__container'>
@@ -26,7 +17,7 @@ export default function Cards() {
             {status === "success"
                 && data.map((item) => {
                     const info = transformDataObject(item);
-                    
+
                     return <CardComponent key={info.id} {...info} />;
                 })}
 

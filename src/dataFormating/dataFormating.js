@@ -4,7 +4,7 @@ export const transformDataObject = (item) => {
 	return {
 		urlImg: item.links[0].href,
 		title: item.data[0].title,
-		explanation: item.data[0].description,
+		description: item.data[0].description,
 		id: item.data[0].nasa_id,
 		date: item.data[0].date_created,
 	};
