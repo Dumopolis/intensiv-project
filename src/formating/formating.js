@@ -10,11 +10,14 @@ export const transformDataObject = (item) => {
 	};
 };
 
-export const formatDescription = (description) => {
-	const sliceDescription = description.slice(0, 120);
-	const lastSpace = sliceDescription.lastIndexOf(" ");
-	const finishDescription = sliceDescription.slice(0, lastSpace) + "...";
-	return finishDescription;
+export const formatForLenght = (text, lenght) => {
+	if (text.length > lenght){
+		const sliceDescription = text.slice(0, lenght);
+		const lastSpace = sliceDescription.lastIndexOf(" ");
+		const finishDescription = sliceDescription.slice(0, lastSpace) + "...";
+		return finishDescription;
+	}
+	return text;
 };
 
 export const formatDate = (date) => moment(date).format("DD MMM YYYY");

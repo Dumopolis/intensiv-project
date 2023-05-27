@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -7,27 +7,22 @@ import { Container, FormControl, FormControlLabel, Radio, RadioGroup, Typography
 import SearchBar from '../SearchBar/SearchBar';
 import Cards from '../Cards/Cards';
 
-import { fetchData } from '../../store/slices/dataSlice';
 import { setKeywords } from '../../store/slices/searchSlice';
 
-import { useSearchRequestInfo } from '../../hooks/useSearchRequestInfo';
-import { useDebounce } from '../../hooks/useDebounce';
+import { useSearchInfo } from '../../hooks/useSearchInfo';
+import { useGetSearchNewsQuery } from '../../store/slices/nasaApi';
 
 
 export default function Search() {
   const dispatch = useDispatch();
-  const searchInfo = useSearchRequestInfo();
+  const searchInfo = useSearchInfo();
 
   const changeRadio = (e) => {
     dispatch(setKeywords({ keywords: e.target.value }));
   };
-
-  const makeRequest = useDebounce(()=>dispatch(fetchData(searchInfo)),300);
-
-  useEffect(()=>{
-    dispatch(fetchData(searchInfo));
-    // eslint-disable-next-line
-  }, []);
+  
+  const news = useGetSearchNewsQuery(searchInfo);
+  
 
   return (
     <>
@@ -35,7 +30,7 @@ export default function Search() {
         <Typography variant='h2' marginBottom={4} textAlign={'center'}>
           UNIVERSE SEARCH
         </Typography>
-        <FormControl sx={{ flexDirection: "row" }} fullWidth value={searchInfo} onChange={makeRequest}>
+        <FormControl sx={{ flexDirection: "row" }} fullWidth >
           <RadioGroup
             defaultValue=''
             onChange={changeRadio}
@@ -50,7 +45,7 @@ export default function Search() {
           <SearchBar />
         </FormControl>
       </Container>
-      <Cards />
+      <Cards {...news}/>
     </>
   );
 }

@@ -17,9 +17,9 @@ export default function AlertComponent() {
     const { activeAlert, severity, title, text } = useAlert();
 
     useEffect(() => {
-        setTimeout(() => dispatch(removeAlert()), 10000);
+        setTimeout(() => closeAlert(), 10000);
         // eslint-disable-next-line
-    }, [activeAlert])
+    }, [activeAlert]);
 
     return activeAlert ? (
         <Alert variant='outlined' severity={severity} sx={{

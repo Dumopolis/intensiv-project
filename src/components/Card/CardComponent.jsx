@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import { formatDate, formatDescription } from '../../dataFormating/dataFormating';
+import { formatDate, formatForLenght } from '../../formating/formating';
+import { useAuth } from '../../hooks/useAuth';
+import { useFavoriteManipulator } from '../../hooks/useFavoriteManipulator';
 
 
-export default function CardComponent({ date, description, title, urlImg }) {
+export default function CardComponent({ date, description, title, urlImg, id }) {
+    
+    const descriptionFormated = formatForLenght(description, 150);
 
-    const descriptionFormated = formatDescription(description);
+    const titleFormated = formatForLenght(title, 50);
 
     const dateFormated = formatDate(date);
+
+    const { isAuth } = useAuth();
+
+    const {getFavoriteLocalStorage, toggleToFavorites, iconState} = useFavoriteManipulator(id);
+
+    useEffect(() => {
+        getFavoriteLocalStorage();
+        // eslint-disable-next-line
+    }, [isAuth]);
 
     return (
         <Card sx={{
             width: 345,
             margin: 2,
         }}>
-            <CardHeader title={title}
+            <CardHeader title={titleFormated}
                 sx={{
-                    minHeight: 90,
+                    minHeight: 95,
                     textAlign: 'center'
                 }}
             />
@@ -31,7 +44,9 @@ export default function CardComponent({ date, description, title, urlImg }) {
                 image={urlImg}
                 alt={title} />
 
-            <CardContent>
+            <CardContent sx={{
+                minHeight: 120,
+            }}>
                 <Typography variant="body1" color="text.secondary" >
                     {dateFormated}
                 </Typography>
@@ -40,19 +55,15 @@ export default function CardComponent({ date, description, title, urlImg }) {
                 </Typography>
             </CardContent>
 
-            <CardActions disableSpacing>
+            <CardActions disableSpacing >
                 <Button size="normal" color='secondary'>Learn More</Button>
-                <IconButton aria-label="add to favorites" sx={{
+                <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} sx={{
                     marginLeft: 'auto',
                 }}>
                     <FavoriteIcon />
                 </IconButton>
 
             </CardActions>
-
-
-
-
         </Card>
     );
 }

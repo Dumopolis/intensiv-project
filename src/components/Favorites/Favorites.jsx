@@ -1,7 +1,29 @@
 import React from 'react';
 
+import { Typography } from '@mui/material';
+
+import { useUser } from '../../hooks/useUser';
+import FavoriteCard from '../FavoriteCard/FavoriteCard';
+
 export default function Favorites() {
+  const { favorites } = useUser();
+
   return (
-    <div>Favorites</div>
+    <>
+      <Typography
+        variant='h2'
+        textAlign='center'
+        sx={{
+          paddingTop: 5,
+          fontSize: '4rem'
+        }}>
+        FAVORITES
+      </Typography>
+      <div className='cards__container'>
+        {favorites.map((favoriteItem) => <FavoriteCard key={favoriteItem} id={favoriteItem} />
+        )}
+      </div>
+    </>
+
   );
 }

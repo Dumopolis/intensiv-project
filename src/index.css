@@ -15,3 +15,9 @@ a{
   min-height: calc(100vh - 128px);
   box-sizing: border-box;
 }
+.cards__container {
+	display: flex;
+	padding: 50px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
