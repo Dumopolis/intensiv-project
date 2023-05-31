@@ -1,17 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const currentUserUid = localStorage.currentUser;
+import { getUserFromLocalStorage } from "../../localStorageHelpers/getUserFromLocalStorage";
 
-const currentUser = localStorage.getItem(currentUserUid)
-	? JSON.parse(localStorage.getItem(currentUserUid))
-	: {
-			uid: null,
-			email: null,
-			favorites: [],
-			history: [],
-	  };
+const currentUserUid = localStorage.getItem("currentUser");
 
-const initialState = currentUser;
+
+const initialState = getUserFromLocalStorage(currentUserUid);
 
 const userSlice = createSlice({
 	name: "user",
@@ -21,17 +15,25 @@ const userSlice = createSlice({
 			state.email = action.payload.email;
 			state.uid = action.payload.uid;
 			state.favorites = action.payload.favorites;
-			state.history = action.payload.history;
+			state.searchHistory = action.payload.searchHistory;
+			state.openedCardHistory = action.payload.openedCardHistory;
+		},
+		setOpenedCardHistory(state, action){
+			state.openedCardHistory[action.payload.id] = action.payload.date;
+		},
+		setSearchHistory(state, action){
+			state.searchHistory = [action.payload.searchHistory, ...state.searchHistory];
 		},
 		removeUser(state) {
 			state.email = null;
 			state.uid = null;
 			state.favorites = [];
-			state.history = [];
+			state.searchHistory = [];
+			state.openedCardHistory = {};
 		},
 	},
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser,setOpenedCardHistory, setSearchHistory, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

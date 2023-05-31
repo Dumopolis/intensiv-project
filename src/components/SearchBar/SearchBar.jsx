@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -14,13 +14,16 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { Search, SearchIconWrapper, StyledInputBase } from './styleForSearchBar';
 
 
-export default function SearchBar() {
-  const [search, setSearch] = useState('');
+export default function SearchBar({value}) {
+  const [search, setSearch] = useState(value);
+
   const { isAuth } = useAuth();
   const dispatch = useDispatch();
+
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const makeRequest = useDebounce(() => (dispatch(setRequest({ request: search }))), 300);
+  const makeRequest = useDebounce(() => (dispatch(setRequest({ request: search }))), 600);
 
   const changeInputValue = (e) => {
     setSearch(e.target.value);
@@ -28,9 +31,9 @@ export default function SearchBar() {
   };
 
   const tryToSearch = (e) => {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter' && pathname !== '/search') {
       if (isAuth) {
-        navigate('/search');
+        navigate(`/search?request=${search}&keywords=`);
         makeRequest();
       } else {
         dispatch(showAlert({

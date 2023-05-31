@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +8,7 @@ import { Container, FormControl, FormControlLabel, Radio, RadioGroup, Typography
 import SearchBar from '../SearchBar/SearchBar';
 import Cards from '../Cards/Cards';
 
-import { setKeywords } from '../../store/slices/searchSlice';
+import { setKeywords, setRequest } from '../../store/slices/searchSlice';
 
 import { useSearchInfo } from '../../hooks/useSearchInfo';
 import { useGetSearchNewsQuery } from '../../store/slices/nasaApi';
@@ -15,14 +16,32 @@ import { useGetSearchNewsQuery } from '../../store/slices/nasaApi';
 
 export default function Search() {
   const dispatch = useDispatch();
-  const searchInfo = useSearchInfo();
 
   const changeRadio = (e) => {
     dispatch(setKeywords({ keywords: e.target.value }));
   };
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { keywords: keywordsFromStore, request: requestFromStore } = useSearchInfo(searchParams.get('keywords'));
+
+  const news = useGetSearchNewsQuery({ request: searchParams.get('request'), keywords: searchParams.get('keywords') });
+
+
+  useEffect(() => {
+    setSearchParams({
+      request: requestFromStore,
+      keywords: keywordsFromStore,
+    });
+  }, [requestFromStore, keywordsFromStore, searchParams, setSearchParams]);
+
+  useEffect(() => {
   
-  const news = useGetSearchNewsQuery(searchInfo);
-  
+    dispatch(setKeywords({ keywords: searchParams.get('keywords') || '' }));
+    dispatch(setRequest({ request: searchParams.get('request') || '' }));
+
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -32,7 +51,7 @@ export default function Search() {
         </Typography>
         <FormControl sx={{ flexDirection: "row" }} fullWidth >
           <RadioGroup
-            defaultValue=''
+            value={searchParams.get('keywords')}
             onChange={changeRadio}
             sx={{ width: "50%" }}
             row
@@ -42,10 +61,10 @@ export default function Search() {
             <FormControlLabel value="EARTH" control={<Radio />} label="EARTH" />
             <FormControlLabel value="" control={<Radio />} label="OTHER" />
           </RadioGroup>
-          <SearchBar />
+          <SearchBar value={searchParams.get('request')} />
         </FormControl>
       </Container>
-      <Cards {...news}/>
+      <Cards {...news} />
     </>
   );
 }

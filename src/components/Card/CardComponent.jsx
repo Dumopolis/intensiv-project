@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+import { showAlert } from '../../store/slices/alertSlice';
 import { formatDate, formatForLenght } from '../../formating/formating';
 import { useAuth } from '../../hooks/useAuth';
 import { useFavoriteManipulator } from '../../hooks/useFavoriteManipulator';
@@ -19,10 +22,27 @@ export default function CardComponent({ date, description, title, urlImg, id }) 
 
     const { isAuth } = useAuth();
 
-    const {getFavoriteLocalStorage, toggleToFavorites, iconState} = useFavoriteManipulator(id);
+    const {setFavoriteFromLocalStorage, toggleToFavorites, iconState} = useFavoriteManipulator(id);
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const tryToOpen = () =>{
+        if(isAuth) {
+            navigate(`/news/${id}`);
+        } else{
+            dispatch(
+				showAlert({
+					severity: "info",
+					title: "Sorry... You can`t open card",
+					text: `If you want open card, you need authenticate or registration`,
+				})
+			);
+        }
+
+    };
     useEffect(() => {
-        getFavoriteLocalStorage();
+        setFavoriteFromLocalStorage();
         // eslint-disable-next-line
     }, [isAuth]);
 
@@ -37,7 +57,6 @@ export default function CardComponent({ date, description, title, urlImg, id }) 
                     textAlign: 'center'
                 }}
             />
-
             <CardMedia
                 component="img"
                 height="200"
@@ -56,13 +75,12 @@ export default function CardComponent({ date, description, title, urlImg, id }) 
             </CardContent>
 
             <CardActions disableSpacing >
-                <Button size="normal" color='secondary'>Learn More</Button>
+                <Button size="normal" onClick={tryToOpen} color='secondary'>Learn More</Button>
                 <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} sx={{
                     marginLeft: 'auto',
                 }}>
                     <FavoriteIcon />
                 </IconButton>
-
             </CardActions>
         </Card>
     );

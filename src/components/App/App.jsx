@@ -9,6 +9,7 @@ import History from '../History/History';
 import SearchPage from '../SearchPage/SearchPage';
 
 import './App.css';
+import CardOpened from '../CardOpened/CardOpened';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/history' element={<History />} />
         <Route path='/search' element={<SearchPage />} />
+        <Route path='/news/:id' element={<CardOpened />} />
       </Route>
     </Routes>
   );

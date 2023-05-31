@@ -4,6 +4,7 @@ import userReducer from "./slices/userSlice";
 import alertReducer from "./slices/alertSlice";
 import searchReducer from "./slices/searchSlice";
 import { nasaApi } from "./slices/nasaApi";
+import { searchMiddleware } from "./middleware/searchMiddleware";
 
 export const store = configureStore({
 	reducer: {
@@ -12,5 +13,5 @@ export const store = configureStore({
 		search: searchReducer,
 		[nasaApi.reducerPath]: nasaApi.reducer,
 	},
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(nasaApi.middleware)
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(nasaApi.middleware, searchMiddleware)
 });

@@ -5,26 +5,31 @@ import CardComponent from '../Card/CardComponent';
 import { transformDataObject } from '../../formating/formating';
 
 
-export default function Cards({ isLoading, isSuccess, data, error,  }) {
+export default function Cards({ isLoading, isSuccess, data, error, }) {
 
-    const newsItems = isSuccess && data.collection.items;
-    
-    return (
-        <div className='cards__container'>
+    if (isSuccess) {
 
-            {isSuccess
-                && newsItems.map((item) => {
+        const newsItems = data.collection.items;
+
+        return (
+            <div className='cards__container'>
+
+                {newsItems.map((item) => {
                     const info = transformDataObject(item);
 
                     return <CardComponent key={info.id} {...info} />;
                 })}
 
-            {isLoading === "loading" && <h2>Loading</h2>}
+            </div>
+        );
+        
+    } else if (error) {
 
-            {error && <h2>Hmmm sorry ... {error}</h2>}
+        return <h2>Hmmm sorry ... {error}</h2>;
 
-            
-        </div>
-    );
+    } else if (isLoading) {
+
+        return <h2>Loading...</h2>;
+    }
 
 }

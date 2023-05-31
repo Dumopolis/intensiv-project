@@ -7,9 +7,8 @@ import {
 	getAuth,
 } from "firebase/auth";
 
-import { checkUserOnLocalStorage } from "../localStorageHelpers/checkUserOnLocalStorage";
-import { setLocalStorage } from "../localStorageHelpers/setLocalStorage";
-
+import { getUserFromLocalStorage } from "../localStorageHelpers/getUserFromLocalStorage";
+import { setCurrentUserLocalStorage } from "../localStorageHelpers/setCurrentUserLocalStorage";
 import { removeUser, setUser } from "../store/slices/userSlice";
 import { showAlert } from "../store/slices/alertSlice";
 
@@ -28,10 +27,11 @@ export function useUserManipilator() {
 					uid: user.uid,
 					email: user.email,
 					favorites: [],
-					history: [],
+					searchHistory: [],
+					openedCardHistory: {},
 				};
 				dispatch(setUser(userReady));
-				setLocalStorage(userReady, userReady.uid);
+				setCurrentUserLocalStorage(userReady, userReady.uid);
 				navigate("/");
 				return userReady;
 			})
@@ -60,9 +60,9 @@ export function useUserManipilator() {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(({ user }) => {
 				navigate("/");
-				const userReady = checkUserOnLocalStorage(user);
+				const userReady = getUserFromLocalStorage(user.uid, user.email);
 				dispatch(setUser(userReady));
-				setLocalStorage(userReady, userReady.uid);
+				setCurrentUserLocalStorage(userReady, userReady.uid);
 				return userReady;
 			})
 			.then((user) =>

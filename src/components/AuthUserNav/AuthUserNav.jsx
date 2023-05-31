@@ -15,6 +15,7 @@ export default function AuthUserNav({email}) {
                 {email}
             </Typography>
             <Link to='/favorites'><Button color="inherit" sx={{ marginRight: 4 }}>Favorites</Button></Link>
+            <Link to='/history'><Button color="inherit" sx={{ marginRight: 4 }}>History</Button></Link>
             <Button onClick={logOut} color="inherit" sx={{ marginRight: 4 }}>Log out</Button>
         </>
     );

@@ -1,5 +1,5 @@
-export const checkUserOnLocalStorage = (user) => {
-	const localUserString = localStorage.getItem(user.uid);
+export const getUserFromLocalStorage = (uid, email) => {
+	const localUserString = localStorage.getItem(uid);
 	let setUserObject;
 
 	if (localUserString) {
@@ -8,14 +8,16 @@ export const checkUserOnLocalStorage = (user) => {
 			uid: localUser.uid,
 			email: localUser.email,
 			favorites: localUser.favorites,
-			history: localUser.history,
+			searchHistory: localUser.searchHistory,
+			openedCardHistory: localUser.openedCardHistory,
 		};
 	} else {
 		setUserObject = {
-			uid: user.uid,
-			email: user.email,
+			uid: uid,
+			email: email,
 			favorites: [],
-			history: [],
+			searchHistory: [],
+			openedCardHistory: {},
 		};
 	}
 	return setUserObject;

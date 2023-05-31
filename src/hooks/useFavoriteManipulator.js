@@ -70,7 +70,7 @@ export function useFavoriteManipulator(id) {
 		}
 	};
 
-	const getFavoriteLocalStorage = () => {
+	const setFavoriteFromLocalStorage = () => {
         const userInfo = JSON.parse(localStorage.getItem(uid)) || {};
         const favoritesList = userInfo.favorites;
         const isFavorite = favoritesList && favoritesList.find((localStorageId) => localStorageId === id);
@@ -78,5 +78,5 @@ export function useFavoriteManipulator(id) {
     };
 
 	
-	return {getFavoriteLocalStorage, toggleToFavorites, iconState};
+	return {setFavoriteFromLocalStorage, toggleToFavorites, iconState};
 }
