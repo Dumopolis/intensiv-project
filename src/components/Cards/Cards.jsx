@@ -1,11 +1,11 @@
 import React from 'react';
 
 import CardComponent from '../Card/CardComponent';
+import Loader from '../Loader/Loader';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
 
 
-
-export default function Cards({ isLoading, isSuccess, data: nasaNews, error, }) {
-
+export default function Cards({ isLoading, isSuccess, data: nasaNews, error}) {
     if (isSuccess) {
    
         return (
@@ -20,11 +20,11 @@ export default function Cards({ isLoading, isSuccess, data: nasaNews, error, }) 
         
     } else if (error) {
 
-        return <h2>Hmmm sorry ... {error}</h2>;
+        return <ErrorComponent error={error.error} />;
 
     } else if (isLoading) {
 
-        return <h2>Loading...</h2>;
+        return <Loader />;
     }
 
 }

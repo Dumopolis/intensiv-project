@@ -1,28 +1,29 @@
 import React from 'react';
 
+import { Typography } from '@mui/material';
+
 import { useGetOneNewsQuery } from '../../store/slices/nasaApi';
 
-import { transformDataObject } from '../../formating/formating';
 
 import CardComponent from '../Card/CardComponent';
+import Loader from '../Loader/Loader';
 
-export default function FavoriteCardTest({ id }) {
-    const { data, isSuccess, error, isLoading } = useGetOneNewsQuery(id);
+export default function FavoriteCard({ id }) {
+    const { data: newsItem, isSuccess, error, isLoading } = useGetOneNewsQuery(id);
 
     if (isSuccess) {
-        const itemInfo = transformDataObject(data.collection.items[0]);
 
         return (
-            isSuccess && <CardComponent {...itemInfo} />
+            <CardComponent {...newsItem} />
         );
         
     } else if (error) {
 
-        return <h2>{error}</h2>;
+        return <Typography variant='body1' padding={10}>Sorry... We can`t get this news</Typography>;
 
     } else if (isLoading) {
 
-        return <h2>Loading...</h2>;
+        return <Loader />;
     }
 
 }

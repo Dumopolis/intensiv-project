@@ -46,6 +46,10 @@ export const nasaApi = createApi({
 					nasa_id: id,
 				},
 			}),
+			transformResponse: (response) => {
+				const newsItem = transformDataObject(response.collection.items[0]);
+				return newsItem;
+			},
 		}),
 	}),
 });

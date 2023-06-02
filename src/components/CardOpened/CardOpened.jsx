@@ -11,12 +11,14 @@ import { formatDate, formatDescription, transformDataObject } from "../../format
 
 import { useUser } from "../../hooks/useUser";
 import { useDebounce } from "../../hooks/useDebounce";
+import Loader from "../Loader/Loader";
+import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
 export default function CardOpened() {
     const { id } = useParams();
 
     const { data, isSuccess, isLoading, error } = useGetOneNewsQuery(id);
-
+ 
     const user = useUser();
     const dispatch = useDispatch();
 
@@ -66,11 +68,11 @@ export default function CardOpened() {
         );
     } else if (error) {
 
-        return <h2>{error}</h2>;
+        return <ErrorComponent error={error.error} />;
 
     } else if (isLoading) {
 
-        return <h2>Loading...</h2>;
+        return <Loader />;
     }
 
 };
