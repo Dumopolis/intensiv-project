@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import { useGetOneNewsQuery } from '../../store/slices/nasaApi';
+
+import image from '../../img/sorry.gif';
 
 
 import CardComponent from '../Card/CardComponent';
@@ -16,10 +18,15 @@ export default function FavoriteCard({ id }) {
         return (
             <CardComponent {...newsItem} />
         );
-        
+
     } else if (error) {
 
-        return <Typography variant='body1' padding={10}>Sorry... We can`t get this news</Typography>;
+        return (
+            <Box padding={2}>
+                <Typography variant='body1' textAlign='center'>Sorry... We can`t get this news</Typography>
+                <img src={image} alt='sorry' style={{ display: 'block', width: '70%', margin: '0 auto' }} />
+            </Box>
+        );
 
     } else if (isLoading) {
 
