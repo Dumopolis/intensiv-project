@@ -1,4 +1,4 @@
-export function setCurrentUserLocalStorage(dataObj, id){
-    localStorage.setItem(id, JSON.stringify(dataObj));
-	localStorage.setItem("currentUser", id);
+export function setCurrentUserLocalStorage(userInfo){
+    localStorage.setItem(userInfo.uid, JSON.stringify(userInfo));
+	localStorage.setItem("currentUser", userInfo.uid);
 }

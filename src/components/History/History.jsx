@@ -18,9 +18,9 @@ export default function History() {
         HISTORY
       </Typography>
 
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Typography variant='h4' padding={5} textAlign='center'>
+      <Grid container spacing={2} margin={5}>
+        <Grid item xs={5} border={1} >
+          <Typography variant='h4' paddingBottom={5} textAlign='center'>
             Opened Cards
           </Typography>
           {sortByDate(cards, 1).map(([id, date]) => {
@@ -28,7 +28,7 @@ export default function History() {
             return (
               <Stack key={id} direction="row" spacing={2} alignItems='center' paddingBottom={2}>
 
-                <Typography variant='body1' marginRight={15}>
+                <Typography variant='body1' marginRight={5}>
                   {formatDate}<br />
                   {time}
                 </Typography>
@@ -39,16 +39,16 @@ export default function History() {
           })}
 
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant='h4' padding={5} textAlign='center'>
+        <Grid item marginLeft={10} xs={5} border={1} >
+          <Typography variant='h4' paddingBottom={5} textAlign='center'>
             Search requests
           </Typography>
           {searchHistory.map(([request, keyword, date]) => {
             const [formatDate, time] = formatDateWithTime(date);
             return (
-              <Stack key={date} direction="row" spacing={2} alignItems='center' paddingBottom={2}>
+              <Stack key={date} direction="row" spacing={2} alignItems='center'  paddingBottom={2}>
 
-                <Typography variant='body1' marginRight={15}>
+                <Typography variant='body1' marginRight={5}>
                   {formatDate}<br />
                   {time}
                 </Typography>

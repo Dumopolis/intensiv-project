@@ -7,7 +7,6 @@ import { setUser } from "../store/slices/userSlice";
 import { useAuth } from "./useAuth";
 import { useUser } from "./useUser";
 
-
 export function useFavoriteManipulator(id) {
 	const [iconState, setIconState] = useState("default");
 
@@ -19,8 +18,9 @@ export function useFavoriteManipulator(id) {
 
 	const addToFavorites = () => {
 		setIconState("secondary");
-		if (localStorage.getItem(uid)) {
-			const userInfo = JSON.parse(localStorage.getItem(uid));
+		const currentUser = localStorage.getItem(uid);
+		if (currentUser) {
+			const userInfo = JSON.parse(currentUser);
 			const userAddFavorite = {
 				...userInfo,
 				favorites: [...userInfo.favorites, id],
@@ -71,12 +71,14 @@ export function useFavoriteManipulator(id) {
 	};
 
 	const setFavoriteFromLocalStorage = () => {
-        const userInfo = JSON.parse(localStorage.getItem(uid)) || {};
-        const favoritesList = userInfo.favorites;
-        const isFavorite = favoritesList && favoritesList.find((localStorageId) => localStorageId === id);
-        isFavorite ? setIconState('secondary') : setIconState('default');
-    };
+		const userInfo = JSON.parse(localStorage.getItem(uid)) || {};
+		const favoritesList = userInfo.favorites;
+		const isFavorite =
+			favoritesList &&
+			favoritesList.find((localStorageId) => localStorageId === id);
+		const iconState = isFavorite ? "secondary" : "default";
+		setIconState(iconState);
+	};
 
-	
-	return {setFavoriteFromLocalStorage, toggleToFavorites, iconState};
+	return { setFavoriteFromLocalStorage, toggleToFavorites, iconState };
 }

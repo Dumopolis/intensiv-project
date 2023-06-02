@@ -1,10 +1,10 @@
 export const getUserFromLocalStorage = (uid, email) => {
 	const localUserString = localStorage.getItem(uid);
-	let setUserObject;
+	let userInfo;
 
 	if (localUserString) {
 		const localUser = JSON.parse(localUserString);
-		setUserObject = {
+		userInfo = {
 			uid: localUser.uid,
 			email: localUser.email,
 			favorites: localUser.favorites,
@@ -12,7 +12,7 @@ export const getUserFromLocalStorage = (uid, email) => {
 			openedCardHistory: localUser.openedCardHistory,
 		};
 	} else {
-		setUserObject = {
+		userInfo = {
 			uid: uid,
 			email: email,
 			favorites: [],
@@ -20,5 +20,5 @@ export const getUserFromLocalStorage = (uid, email) => {
 			openedCardHistory: {},
 		};
 	}
-	return setUserObject;
+	return userInfo;
 };

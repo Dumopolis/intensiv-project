@@ -2,22 +2,17 @@ import React from 'react';
 
 import CardComponent from '../Card/CardComponent';
 
-import { transformDataObject } from '../../formating/formating';
 
 
-export default function Cards({ isLoading, isSuccess, data, error, }) {
+export default function Cards({ isLoading, isSuccess, data: nasaNews, error, }) {
 
     if (isSuccess) {
-
-        const newsItems = data.collection.items;
-
+   
         return (
             <div className='cards__container'>
 
-                {newsItems.map((item) => {
-                    const info = transformDataObject(item);
-
-                    return <CardComponent key={info.id} {...info} />;
+                {nasaNews.map((item) => {
+                    return <CardComponent key={item.id} {...item} />;
                 })}
 
             </div>

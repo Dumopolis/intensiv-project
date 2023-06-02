@@ -31,7 +31,7 @@ export function useUserManipilator() {
 					openedCardHistory: {},
 				};
 				dispatch(setUser(userReady));
-				setCurrentUserLocalStorage(userReady, userReady.uid);
+				setCurrentUserLocalStorage(userReady);
 				navigate("/");
 				return userReady;
 			})
@@ -62,7 +62,7 @@ export function useUserManipilator() {
 				navigate("/");
 				const userReady = getUserFromLocalStorage(user.uid, user.email);
 				dispatch(setUser(userReady));
-				setCurrentUserLocalStorage(userReady, userReady.uid);
+				setCurrentUserLocalStorage(userReady);
 				return userReady;
 			})
 			.then((user) =>

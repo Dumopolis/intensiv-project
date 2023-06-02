@@ -25,8 +25,7 @@ export default function Search() {
 
   const { keywords: keywordsFromStore, request: requestFromStore } = useSearchInfo(searchParams.get('keywords'));
 
-  const news = useGetSearchNewsQuery({ request: searchParams.get('request'), keywords: searchParams.get('keywords') });
-
+  const nasaNews = useGetSearchNewsQuery({ request: searchParams.get('request'), keywords: searchParams.get('keywords') });
 
   useEffect(() => {
     setSearchParams({
@@ -36,10 +35,8 @@ export default function Search() {
   }, [requestFromStore, keywordsFromStore, searchParams, setSearchParams]);
 
   useEffect(() => {
-  
     dispatch(setKeywords({ keywords: searchParams.get('keywords') || '' }));
     dispatch(setRequest({ request: searchParams.get('request') || '' }));
-
     // eslint-disable-next-line
   }, []);
 
@@ -64,7 +61,7 @@ export default function Search() {
           <SearchBar value={searchParams.get('request')} />
         </FormControl>
       </Container>
-      <Cards {...news} />
+      <Cards {...nasaNews} />
     </>
   );
 }

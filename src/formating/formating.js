@@ -1,15 +1,16 @@
 import moment from "moment/moment";
 
-export const transformDataObject = (item) => {
+export const transformDataObject = ({links, data}) => {
+	const {title, description, nasa_id,date_created,center,keywords,secondary_creator} = data[0];
 	return {
-		urlImg: item.links[0].href,
-		title: item.data[0].title,
-		description: item.data[0].description,
-		id: item.data[0].nasa_id,
-		date: item.data[0].date_created,
-		center: item.data[0].center,
-		keywords: item.data[0].keywords,
-		creator: item.data[0].secondary_creator,
+		urlImg: links[0].href,
+		title,
+		description,
+		id: nasa_id,
+		date: date_created,
+		center,
+		keywords,
+		creator: secondary_creator,
 	};
 };
 
