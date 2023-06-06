@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import AlertComponent from '../../helpComponents/AlertComponent/AlertComponent';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import { errorHandler } from '../ErrorBoundary/errorHandler';
 
 
 const theme = createTheme({
@@ -29,7 +31,9 @@ export default function Layout() {
       <Header />
       <AlertComponent />
       <div className="outlet">
-        <Outlet />
+        <ErrorBoundary errorHandler={(error)=>errorHandler(error.message)}>
+          <Outlet />
+        </ErrorBoundary>
       </div>
       <Footer />
     </ThemeProvider>

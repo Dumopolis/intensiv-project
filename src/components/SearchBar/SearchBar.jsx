@@ -14,7 +14,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { Search, SearchIconWrapper, StyledInputBase } from './styleForSearchBar';
 
 
-export default function SearchBar({value}) {
+export default function SearchBar({ value }) {
   const [search, setSearch] = useState(value);
 
   const { isAuth } = useAuth();
@@ -52,6 +52,7 @@ export default function SearchBar({value}) {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        label="Controlled"
         onKeyDown={tryToSearch}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}

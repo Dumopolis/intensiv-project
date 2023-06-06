@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,8 +14,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFavoriteManipulator } from '../../hooks/useFavoriteManipulator';
 
 
-export default function CardComponent({ date, description, title, urlImg, id }) {
-    
+function CardComponent({ date, description, title, urlImg, id }) {
+
     const descriptionFormated = formatForLenght(description, 150);
 
     const titleFormated = formatForLenght(title, 50);
@@ -22,22 +24,22 @@ export default function CardComponent({ date, description, title, urlImg, id }) 
 
     const { isAuth } = useAuth();
 
-    const {setFavoriteFromLocalStorage, toggleToFavorites, iconState} = useFavoriteManipulator(id);
+    const { setFavoriteFromLocalStorage, toggleToFavorites, iconState } = useFavoriteManipulator(id);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const tryToOpen = () =>{
-        if(isAuth) {
+    const tryToOpen = () => {
+        if (isAuth) {
             navigate(`/news/${id}`);
-        } else{
+        } else {
             dispatch(
-				showAlert({
-					severity: "info",
-					title: "Sorry... You can`t open card",
-					text: `If you want open card, you need authenticate or registration`,
-				})
-			);
+                showAlert({
+                    severity: "info",
+                    title: "Sorry... You can`t open card",
+                    text: `If you want open card, you need authenticate or registration`,
+                })
+            );
         }
 
     };
@@ -85,3 +87,13 @@ export default function CardComponent({ date, description, title, urlImg, id }) 
         </Card>
     );
 }
+
+CardComponent.propTypes = {
+    date: PropTypes.string,
+    description: PropTypes.string,
+    title: PropTypes.string,
+    urlImg: PropTypes.string,
+    id: PropTypes.string,
+};
+
+export default CardComponent;

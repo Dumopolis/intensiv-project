@@ -10,7 +10,7 @@ import Cards from '../Cards/Cards';
 export default function Home() {
 
   const nasaNews = useGetMainNewsQuery();
-  console.log(nasaNews);
+
   return (
     <>
       <Typography

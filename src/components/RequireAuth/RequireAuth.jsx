@@ -1,0 +1,28 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation, Navigate } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/useAuth';
+import { showAlert } from '../../store/slices/alertSlice';
+
+export default function RequireAuth({ children }) {
+
+    const location = useLocation();
+
+    const { isAuth } = useAuth();
+
+    const dispatch = useDispatch();
+
+    if (!isAuth) {
+        console.log(location);
+        dispatch(showAlert({
+            severity: 'info',
+            title: location.pathname + " is unavailable" ,
+            text: 'You can`t open this link, because you don`t authenticate'
+        }));
+        return <Navigate to='/' />;
+    }
+    return children;
+
+
+}

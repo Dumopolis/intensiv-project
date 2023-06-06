@@ -74,6 +74,11 @@ export default function CardOpened() {
 
         return <Loader />;
     }
+    return (
+        <Typography variant='h2' textAlign={"center"} padding={5}>
+            We can`t get news. Try again later
+        </Typography>
+    );
 
 };
 

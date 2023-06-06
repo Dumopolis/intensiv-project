@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { Box, Typography } from '@mui/material';
 
 import { useGetOneNewsQuery } from '../../store/slices/nasaApi';
@@ -10,7 +12,7 @@ import image from '../../img/sorry.gif';
 import CardComponent from '../Card/CardComponent';
 import Loader from '../Loader/Loader';
 
-export default function FavoriteCard({ id }) {
+function FavoriteCard({ id }) {
     const { data: newsItem, isSuccess, error, isLoading } = useGetOneNewsQuery(id);
 
     if (isSuccess) {
@@ -34,3 +36,9 @@ export default function FavoriteCard({ id }) {
     }
 
 }
+
+FavoriteCard.propTypes = {
+    id: PropTypes.string,
+};
+
+export default FavoriteCard;
