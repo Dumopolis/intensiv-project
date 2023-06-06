@@ -28,21 +28,8 @@ export default function CardOpened() {
     const dispatch = useDispatch();
     const saveHistory = useDebounce(() => dispatch(setOpenedCardHistory({ id, date: new Date().toJSON() })));
 
-    const { isTelegramShareEnabled, setTelegramShareStatus } = useContext(FeatureFlagContext);
+    const { isTelegramShareEnabled } = useContext(FeatureFlagContext);
 
-
-    useEffect(() => {
-        const fetchFeatureFlag = async () => {
-            await fetch("http://localhost:3001/api")
-                .then((response => response.json()))
-                .then((data) => data.feature_flags.isTelegramShareEnabled)
-                .then((status) => setTelegramShareStatus({ status }))
-                .catch(() => console.error);
-        };
-
-        fetchFeatureFlag();
-        // eslint-disable-next-line
-    }, []);
 
     useEffect(() => {
         saveHistory();
@@ -87,9 +74,8 @@ export default function CardOpened() {
                             </IconButton>
 
                             {isTelegramShareEnabled &&
-                                <a href={`https://t.me/share/url?url=https://images.nasa.gov/details/${id}`}>
-                                    <Button>Share on Telegram</Button>
-                                </a>}
+                                <Button href={`https://t.me/share/url?url=https://images.nasa.gov/details/${id}`}>Share on Telegram</Button>
+                            }
                         </Grid>
 
                     </Grid>

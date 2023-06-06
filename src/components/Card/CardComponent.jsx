@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,9 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import { Button, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import TelegramIcon from '@mui/icons-material/Telegram';
+
+import { FeatureFlagContext } from '../../context/context';
 
 import { showAlert } from '../../store/slices/alertSlice';
 import { formatDate, formatForLenght } from '../../formating/formating';
@@ -25,6 +28,8 @@ function CardComponent({ date, description, title, urlImg, id }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { isTelegramShareEnabled } = useContext(FeatureFlagContext);
+
     const tryToOpen = () => {
         if (isAuth) {
             navigate(`/news/${id}`);
@@ -39,11 +44,12 @@ function CardComponent({ date, description, title, urlImg, id }) {
         }
 
     };
-    
+
     useEffect(() => {
         setFavoriteFromLocalStorage();
         // eslint-disable-next-line
     }, [isAuth]);
+
 
     return (
         <Card sx={{
@@ -75,9 +81,14 @@ function CardComponent({ date, description, title, urlImg, id }) {
 
             <CardActions disableSpacing >
                 <Button size="normal" onClick={tryToOpen} color='secondary'>Learn More</Button>
-                <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} sx={{
-                    marginLeft: 'auto',
-                }}>
+                {isTelegramShareEnabled &&
+                    <IconButton href={`https://t.me/share/url?url=https://images.nasa.gov/details/${id}`} aria-label="share on telegram" sx={{
+                        marginLeft: 'auto',
+                    }} >
+                            <TelegramIcon />
+                    </IconButton>
+                }
+                <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} >
                     <FavoriteIcon />
                 </IconButton>
             </CardActions>

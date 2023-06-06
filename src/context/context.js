@@ -1,20 +1,13 @@
-import { createContext, useReducer } from "react";
-
-import { reducer } from "./reducer";
+import { createContext, useState } from "react";
 
 export const FeatureFlagContext = createContext();
 
-const initialState = {
-	isTelegramShareEnabled: false,
-};
-
 export const ContextProvider = ({ children }) => {
-	const [value, dispatch] = useReducer(reducer, initialState);
-
-	value.setTelegramShareStatus = (status) => {
-		dispatch({ type: "SET_TELEGRAM_SHARE_STATUS", payload: status });
+	const [isTelegramShareEnabled, setTelegramShareEnabled] = useState(false);
+	const value = {
+		isTelegramShareEnabled,
+		setTelegramShareEnabled,
 	};
-
 	return (
 		<FeatureFlagContext.Provider value={value}>
 			{children}
