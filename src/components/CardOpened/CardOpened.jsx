@@ -7,7 +7,7 @@ import { Container, Grid, Typography } from "@mui/material";
 import { useGetOneNewsQuery } from "../../store/slices/nasaApi";
 import { setOpenedCardHistory } from "../../store/slices/userSlice";
 
-import { formatDate, formatDescription, transformDataObject } from "../../formating/formating";
+import { formatDate, formatDescription } from "../../formating/formating";
 
 import { useUser } from "../../hooks/useUser";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -33,7 +33,7 @@ export default function CardOpened() {
 
     if (isSuccess) {
 
-        const { urlImg, title, description, date, keywords, creator } = transformDataObject(data.collection.items[0]);
+        const { urlImg, title, description, date, keywords, creator } = data;
         const dateFormated = formatDate(date);
         const descriptionFormated = formatDescription(description);
 
