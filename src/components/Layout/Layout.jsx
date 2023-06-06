@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import AlertComponent from '../../helpComponents/AlertComponent/AlertComponent';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { errorHandler } from '../ErrorBoundary/errorHandler';
+import { ContextProvider } from '../../context/context';
 
 
 const theme = createTheme({
@@ -31,9 +32,11 @@ export default function Layout() {
       <Header />
       <AlertComponent />
       <div className="outlet">
-        <ErrorBoundary errorHandler={(error)=>errorHandler(error.message)}>
-          <Outlet />
-        </ErrorBoundary>
+        <ContextProvider>
+          <ErrorBoundary errorHandler={(error) => errorHandler(error.message)}>
+            <Outlet />
+          </ErrorBoundary>
+        </ContextProvider>
       </div>
       <Footer />
     </ThemeProvider>

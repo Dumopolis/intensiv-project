@@ -17,15 +17,11 @@ import { useFavoriteManipulator } from '../../hooks/useFavoriteManipulator';
 function CardComponent({ date, description, title, urlImg, id }) {
 
     const descriptionFormated = formatForLenght(description, 150);
-
     const titleFormated = formatForLenght(title, 50);
-
     const dateFormated = formatDate(date);
 
     const { isAuth } = useAuth();
-
     const { setFavoriteFromLocalStorage, toggleToFavorites, iconState } = useFavoriteManipulator(id);
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -43,6 +39,7 @@ function CardComponent({ date, description, title, urlImg, id }) {
         }
 
     };
+    
     useEffect(() => {
         setFavoriteFromLocalStorage();
         // eslint-disable-next-line

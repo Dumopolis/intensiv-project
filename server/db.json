@@ -1,0 +1,7 @@
+{
+	"api": {
+		"feature_flags": {
+			"isTelegramShareEnabled": true
+		}
+	}
+}
