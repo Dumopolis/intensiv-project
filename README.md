@@ -28,3 +28,4 @@
 [**Сервер**](https://github.com/Dumopolis/intensiv-project/blob/main/server/db.json)
 [**Контекст**](https://github.com/Dumopolis/intensiv-project/blob/main/src/context/context.js)
 [**Использование**](https://github.com/Dumopolis/intensiv-project/blob/main/src/components/CardOpened/CardOpened.jsx#L76)
+- Подключен storybook и созданы несколько сторисов ☑️ [**Footer**](https://github.com/Dumopolis/intensiv-project/blob/main/src/components/Footer/Footer.stories.jsx) [**Form**](https://github.com/Dumopolis/intensiv-project/blob/main/src/components/Form/Form.stories.jsx)
