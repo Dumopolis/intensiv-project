@@ -11,48 +11,48 @@ const theme = createTheme({
         primary: {
             main: '#000',
         },
-        white:{
-            main:'#FFF'
+        white: {
+            main: '#FFF'
         },
-        blue:{
-            main:'rgb(0,0,200)'
+        blue: {
+            main: 'rgb(0,0,200)'
         },
-        green:{
-            main:'rgb(0,200,0)'
+        green: {
+            main: 'rgb(0,200,0)'
         }
     },
 });
 
-const Template = (args) => <ThemeProvider theme={theme} ><Footer {...args}/></ThemeProvider>;
+const Template = (args) => <ThemeProvider theme={theme} ><Footer {...args} /></ThemeProvider>;
 
 // eslint-disable-next-line
 export default {
     title: 'Footer',
     component: Template,
     argTypes: {
-        color:{
+        color: {
             type: 'string',
             options: ['primary', 'white', 'blue', 'green'],
-            control:{
+            control: {
                 type: 'inline-radio'
             }
         },
-        iconColor:{
+        iconColor: {
             type: 'string',
-            options: ['primary','white', 'blue', 'green'],
-            control:{
+            options: ['primary', 'white', 'blue', 'green'],
+            control: {
                 type: 'inline-radio'
             }
         },
-        iconAdd:{
-            options: ['GitHub', 'LinkedIn', 'Telegram'],
-            control:{
-                type: 'check'
-            }
-
-            
-        }
-
+        showGitHubIcon: {
+            control: 'boolean'
+        },
+        showLinkedInIcon: {
+            control: 'boolean'
+        },
+        showTelegramIcon: {
+            control: 'boolean'
+        },
     }
 };
 
@@ -62,7 +62,9 @@ export const Dark = {
     args: {
         color: 'primary',
         iconColor: 'white',
-        iconAdd: ['GitHub']
+        showGitHubIcon: true,
+        showLinkedInIcon: false,
+        showTelegramIcon: true
     }
 };
 
@@ -70,6 +72,8 @@ export const Light = {
     args: {
         color: 'white',
         iconColor: 'primary',
-        iconAdd: ['GitHub', 'LinkedIn']
+        showGitHubIcon: true,
+        showLinkedInIcon: true,
+        showTelegramIcon: true
     }
 };

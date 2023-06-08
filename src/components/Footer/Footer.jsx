@@ -11,13 +11,11 @@ export default function Footer(
   {
     color = 'primary',
     iconColor = "inerhit",
-    iconAdd = ['GitHub', 'LinkedIn', 'Telegram']
+    showGitHubIcon = true,
+    showLinkedInIcon = true,
+    showTelegramIcon = true,
   }
 ) {
-
-  const isGitHub = iconAdd.find((icon) => icon === 'GitHub');
-  const isLinkedIn = iconAdd.find((icon) => icon === 'LinkedIn');
-  const isTelegram = iconAdd.find((icon) => icon === 'Telegram');
 
   return (
     <Box sx={{ flexGrow: 1 }} >
@@ -27,9 +25,9 @@ export default function Footer(
           justifyContent: "flex-end",
           gap: 40,
         }}>
-          {isGitHub && <a href="https://github.com/Dumopolis"><GitHubIcon color={iconColor} /></a>}
-          {isLinkedIn && <a href="https://www.linkedin.com/in/dumopolis/"><LinkedInIcon color={iconColor} /></a>}
-          {isTelegram && <a href="https://t.me/dumopolis"><TelegramIcon color={iconColor} /></a>}
+          {showGitHubIcon && <a href="https://github.com/Dumopolis"><GitHubIcon color={iconColor} /></a>}
+          {showLinkedInIcon && <a href="https://www.linkedin.com/in/dumopolis/"><LinkedInIcon color={iconColor} /></a>}
+          {showTelegramIcon && <a href="https://t.me/dumopolis"><TelegramIcon color={iconColor} /></a>}
         </Toolbar>
       </AppBar>
     </Box>
