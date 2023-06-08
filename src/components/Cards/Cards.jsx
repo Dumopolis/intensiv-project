@@ -12,15 +12,14 @@ import ErrorComponent from '../ErrorComponent/ErrorComponent';
 function Cards({ isLoading, isSuccess, data: nasaNews, error }) {
     if (isSuccess) {
 
-        return (
+        return nasaNews.length
+            ?
             <div className='cards__container'>
-
                 {nasaNews.map((item) => {
                     return <CardComponent key={item.id} {...item} />;
                 })}
-
             </div>
-        );
+            : <Typography variant='h5' textAlign={'center'} padding={5}>News not found</Typography>;
 
     } else if (error) {
 

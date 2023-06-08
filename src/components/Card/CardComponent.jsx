@@ -81,16 +81,16 @@ function CardComponent({ date, description, title, urlImg, id }) {
 
             <CardActions disableSpacing >
                 <Button size="normal" onClick={tryToOpen} color='secondary'>Learn More</Button>
-                {isTelegramShareEnabled &&
-                    <IconButton href={`https://t.me/share/url?url=https://images.nasa.gov/details/${id}`} aria-label="share on telegram" sx={{
-                        marginLeft: 'auto',
-                    }} >
-                            <TelegramIcon />
-                    </IconButton>
-                }
-                <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} >
+                <IconButton aria-label="add to favorites" color={iconState} onClick={toggleToFavorites} sx={{
+                    marginLeft: 'auto',
+                }}>
                     <FavoriteIcon />
                 </IconButton>
+                {isTelegramShareEnabled &&
+                    <IconButton href={`https://t.me/share/url?url=https://images.nasa.gov/details/${id}`} aria-label="share on telegram" >
+                        <TelegramIcon />
+                    </IconButton>
+                }
             </CardActions>
         </Card>
     );

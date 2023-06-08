@@ -3,7 +3,15 @@ import React, { useState } from 'react';
 import { Button, FormGroup, Input } from '@mui/material';
 
 
-export default function Form({ handleClick, buttonText }) {
+export default function Form(
+    {
+        handleClick,
+        buttonText,
+        color = "secondary",
+        firstPlaceholder = "Email",
+        secondPlaceholder = "Pasword",
+    }
+) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,25 +19,25 @@ export default function Form({ handleClick, buttonText }) {
         <FormGroup sx={{ gap: '10px' }}>
 
             <Input
-                placeholder="Email"
+                placeholder={firstPlaceholder}
                 margin="dense"
-                color="secondary"
+                color={color}
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
 
             <Input
-                placeholder='Pasword'
+                placeholder={secondPlaceholder}
                 margin="dense"
-                color="secondary"
+                color={color}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
 
             <Button
-                color='secondary'
+                color={color}
                 onClick={() => handleClick(email, password)}
             >
                 {buttonText}
