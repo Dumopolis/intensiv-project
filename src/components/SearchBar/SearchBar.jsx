@@ -47,17 +47,16 @@ export default function SearchBar({ value }) {
 
 
   return (
-    <Search>
+    <Search
+      value={search}
+      onChange={changeInputValue}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        label="Controlled"
         onKeyDown={tryToSearch}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
-        onChange={changeInputValue}
-        value={search}
       />
     </Search>
   );

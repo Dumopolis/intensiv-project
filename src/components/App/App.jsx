@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { ContextProvider } from '../../context/context';
 import Loader from '../Loader/Loader';
+import RequireUnAuth from '../RequireUnAuth/RequireUnAuth';
 
 const Layout = lazy(() => import('../Layout/Layout'));
 const Home = lazy(() => import('../Home/Home'));
@@ -23,8 +24,16 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path='/signin' element={<Signin />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route path='/signin' element={
+              <RequireUnAuth >
+                <Signin />
+              </RequireUnAuth>
+            } />
+            <Route path='/signup' element={
+              <RequireUnAuth >
+                <Signup />
+              </RequireUnAuth>
+            } />
             <Route path='/favorites' element={
               <RequireAuth>
                 <Favorites />

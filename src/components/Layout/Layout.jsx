@@ -36,7 +36,7 @@ export default function Layout() {
         .then((response => response.json()))
         .then((data) => data.feature_flags.isTelegramShareEnabled)
         .then((status) => setTelegramShareEnabled(status))
-        .catch(() => console.error);
+        .catch((err) => console.error(err));
     };
 
     fetchFeatureFlag();
