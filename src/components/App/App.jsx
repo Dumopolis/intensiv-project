@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ContextProvider } from '../../context/context';
 import Loader from '../Loader/Loader';
 import RequireUnAuth from '../RequireUnAuth/RequireUnAuth';
+import RequireAuth from '../RequireAuth/RequireAuth';
 
 const Layout = lazy(() => import('../Layout/Layout'));
 const Home = lazy(() => import('../Home/Home'));
@@ -12,7 +13,6 @@ const Signup = lazy(() => import('../Signup/Signup'));
 const Favorites = lazy(() => import('../Favorites/Favorites'));
 const History = lazy(() => import('../History/History'));
 const SearchPage = lazy(() => import('../SearchPage/SearchPage'));
-const RequireAuth = lazy(() => import('../RequireAuth/RequireAuth'));
 const CardOpened = lazy(() => import('../CardOpened/CardOpened'));
 
 
