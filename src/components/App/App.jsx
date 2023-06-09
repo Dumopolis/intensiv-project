@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import { ContextProvider } from '../../context/context';
 import Loader from '../Loader/Loader';
-import RequireUnAuth from '../RequireUnAuth/RequireUnAuth';
-import RequireAuth from '../RequireAuth/RequireAuth';
 
+const RequireAuth = lazy(() => import('../RequireAuth/RequireAuth'));
+const RequireUnAuth = lazy(() => import('../RequireUnAuth/RequireUnAuth'));
 const Layout = lazy(() => import('../Layout/Layout'));
 const Home = lazy(() => import('../Home/Home'));
 const Signin = lazy(() => import('../Signin/Signin'));
