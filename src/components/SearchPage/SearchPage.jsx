@@ -12,6 +12,7 @@ import { setKeywords, setRequest } from '../../store/slices/searchSlice';
 
 import { useSearchInfo } from '../../hooks/useSearchInfo';
 import { useGetSearchNewsQuery } from '../../store/slices/nasaApi';
+import Loader from '../Loader/Loader';
 
 
 export default function Search() {
@@ -26,7 +27,6 @@ export default function Search() {
   const { keywords: keywordsFromStore, request: requestFromStore } = useSearchInfo(searchParams.get('keywords'));
 
   const nasaNews = useGetSearchNewsQuery({ request: searchParams.get('request'), keywords: searchParams.get('keywords') });
-
   useEffect(() => {
     setSearchParams({
       request: requestFromStore,
@@ -61,7 +61,7 @@ export default function Search() {
           <SearchBar value={searchParams.get('request')} />
         </FormControl>
       </Container>
-      <Cards {...nasaNews} />
+      {nasaNews.status === 'pending' ? <Loader /> : <Cards {...nasaNews} />}
     </>
   );
 }

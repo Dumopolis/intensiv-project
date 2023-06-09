@@ -11,6 +11,7 @@ import { useGetOneNewsQuery } from "../../store/slices/nasaApi";
 import { setOpenedCardHistory } from "../../store/slices/userSlice";
 
 import { formatDate, formatDescription } from "../../formating/formating";
+import { setCurrentUserLocalStorage } from "../../localStorageHelpers/setCurrentUserLocalStorage";
 
 import { useUser } from "../../hooks/useUser";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -36,7 +37,7 @@ export default function CardOpened() {
     }, [saveHistory]);
 
     useEffect(() => {
-        localStorage.setItem(user.uid, JSON.stringify(user));
+        setCurrentUserLocalStorage(user);
     }, [user]);
 
     useEffect(() => {

@@ -14,7 +14,6 @@ export default function RequireAuth({ children }) {
     const dispatch = useDispatch();
 
     if (!isAuth) {
-        console.log(location);
         dispatch(showAlert({
             severity: 'info',
             title: location.pathname + " is unavailable" ,
