@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkuniverse=self.webpackChunkuniverse||[]).push([[83],{83:function(n,e,t){t.r(e),t.d(e,{default:function(){return c}});t(2791);var i=t(9164),r=t(890),s=t(5803),u=t(3013),a=t(184);function c(){var n=(0,u.B)().signUp;return(0,a.jsxs)(i.Z,{maxWidth:"sm",children:[(0,a.jsx)(r.Z,{variant:"h2",margin:6,textAlign:"center",children:"REGISTRATION"}),(0,a.jsx)(s.Z,{handleClick:n,buttonText:"Sign Up"})]})}}}]);
+//# sourceMappingURL=83.c4132b11.chunk.js.map
